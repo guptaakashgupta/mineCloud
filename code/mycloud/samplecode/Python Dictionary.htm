@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script async="" src="Python%20Dictionary_files/cbgapi.loaded_1"></script><script async="" src="Python%20Dictionary_files/cbgapi.loaded_0"></script><script src="Python%20Dictionary_files/auth016.js" type="text/javascript"></script><script gapi_processed="true" src="Python%20Dictionary_files/plusone.js" type="text/javascript"></script><link media="all" href="Python%20Dictionary_files/widget120.css" type="text/css" rel="stylesheet">
+<meta charset="utf-8">
+<title>Python Dictionary</title>
+<link rel="shortcut icon" href="http://www.tutorialspoint.com/favicon.ico" type="image/x-icon">
+<meta name="description" content="Python Dictionary - Learning Python in simple and easy steps : A beginner's tutorial containing complete knowledge of Python Syntax Object Oriented Language, Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML Programming">
+<meta name="Keywords" content="Python, Tutorials, Learning, Beginners, Basics, Object Oriented Language, Methods, Overriding, Networking, Multithreading,Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML, Programming">
+<!-- base href="http://www.tutorialspoint.com/" -->
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
+<script type="text/javascript" src="Python%20Dictionary_files/jquery_002.js"></script>
+<script type="text/javascript" src="Python%20Dictionary_files/mobile.js"></script>
+<link rel="stylesheet" type="text/css" href="Python%20Dictionary_files/style.css">
+<link rel="stylesheet" type="text/css" href="Python%20Dictionary_files/prettify.css">
+<script type="text/javascript" src="Python%20Dictionary_files/prettify.js"></script>
+
+<link rel="stylesheet" type="text/css" href="Python%20Dictionary_files/colorbox.css">
+<script type="text/javascript" src="Python%20Dictionary_files/jquery.js"></script>
+<script type="text/javascript" src="Python%20Dictionary_files/tryit.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  var tryit = new $.TryIt('/python/try_python.php');
+  tryit.compile();
+});
+</script>
+
+<style media="screen" type="text/css">
+#topmenu a:link {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#header{ 
+   background:#3777ab !important;
+}
+#topmenu
+{
+   background-color:#fbc62f !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#3777ab !important;
+   border:1px solid #fbc62f !important;
+}
+#middlecol  {min-height:1250px; padding:0px;}
+</style>
+<script src="Python%20Dictionary_files/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+   _uacct = "UA-232293-6";
+   urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="http://www.tutorialspoint.com/index.htm">Tutorials Point Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input name="sitesearch" value="www.tutorialspoint.com" type="hidden">
+<input name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}" type="text">
+<input value="FORID:11" name="cof" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input class="submit btn" src="Python%20Dictionary_files/icon-search.png" alt="Go" type="image">
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="mobileleft">
+<a href="http://www.tutorialspoint.com/index.htm" id="home"><img src="Python%20Dictionary_files/home-icon.png"></a>
+</div>
+<div id="left">
+<a href="http://www.tutorialspoint.com/index.htm" target="_top">HOME </a>
+<a href="http://www.tutorialspoint.com/java/index.htm" target="_top">JAVA </a>
+<a href="http://www.tutorialspoint.com/php/index.htm" target="_top">PHP </a>
+<a href="http://www.tutorialspoint.com/python/index.htm" target="_top">Python </a>
+<a href="http://www.tutorialspoint.com/ruby/index.htm" target="_top">Ruby </a>
+<a href="http://www.tutorialspoint.com/perl/index.htm" target="_top">Perl </a>
+<a href="http://www.tutorialspoint.com/html/index.htm" target="_top">HTML </a>
+<a href="http://www.tutorialspoint.com/css/index.htm" target="_top">CSS </a>
+<a href="http://www.tutorialspoint.com/javascript/index.htm" target="_top">Javascript </a>
+<a href="http://www.tutorialspoint.com/mysql/index.htm" target="_top">MySQL </a>
+<a href="http://www.tutorialspoint.com/cplusplus/index.htm" target="_top">C++ </a>
+<a href="http://www.tutorialspoint.com/unix/index.htm" target="_top">UNIX </a>
+<a href="http://www.tutorialspoint.com/more.htm" target="_top">MORE...</a>
+</div>
+<div id="mobileright">
+<a href="#" id="pull"><img src="Python%20Dictionary_files/nav-icon.png"></a>
+</div>
+<div id="right">
+<a href="http://www.tutorialspoint.com/references.htm" target="_top">REFERENCES</a> |
+<a href="http://www.tutorialspoint.com/forums/index.php" target="_top">FORUM</a> |
+<a href="http://www.tutorialspoint.com/about/index.htm" target="_top">ABOUT</a> |
+<a href="http://www.tutorialspoint.com/about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="Python%20Dictionary_files/python-mini.png" alt="Python tutorial">
+</div>
+<ul class="menu">
+<li class="heading">Python Basic Tutorial</li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/index.htm">Python - Home</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_overview.htm">Python - Overview</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_environment.htm">Python - Environment</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_basic_syntax.htm">Python - Basic Syntax</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_variable_types.htm">Python - Variable Types</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_basic_operators.htm">Python - Basic Operators</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_decision_making.htm">Python - Decision Making</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_loops.htm">Python - Loops</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_numbers.htm">Python - Numbers</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_strings.htm">Python - Strings</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_lists.htm">Python - Lists</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_tuples.htm">Python - Tuples</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_dictionary.htm"><b>Python - Dictionary</b></a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_date_time.htm">Python - Date &amp; Time</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_functions.htm">Python - Functions</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_modules.htm">Python - Modules</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_files_io.htm">Python - Files I/O</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_exceptions.htm">Python - Exceptions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python Advanced Tutorial</li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_classes_objects.htm">Python - Classes/Objects</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_reg_expressions.htm">Python - Reg Expressions</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_cgi_programming.htm">Python - CGI Programming</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_database_access.htm">Python - Database Access</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_networking.htm">Python - Networking</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_sending_email.htm">Python - Sending Email</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_multithreading.htm">Python - Multithreading</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_xml_processing.htm">Python - XML Processing</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_gui_programming.htm">Python - GUI Programming</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_further_extensions.htm">Python - Further Extensions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python  Useful Resources</li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_quick_guide.htm">Python - Quick Guide</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_tools_utilities.htm">Python - Tools/Utilities</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/python/python_useful_resources.htm">Python Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="http://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Python Dictionary</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript" src="Python%20Dictionary_files/show_ads.js"> 
+</script><ins style="display:inline-table;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="60" scrolling="no" width="468"></iframe></ins></ins>
+</div>
+<hr>
+<div class="pre-btn">
+<a href="http://www.tutorialspoint.com/python/python_tuples.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="http://www.tutorialspoint.com/python/python_date_time.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr>
+<p>A dictionary is mutable and is another container type that can store 
+any number of Python objects, including other container types. 
+Dictionaries consist of pairs (called items) of keys and their 
+corresponding values.</p>
+<p>Python dictionaries are also known as associative arrays or hash tables. The general syntax of a dictionary is as follows:</p>
+<pre style="" class="prettyprint prettyprinted"><span class="pln">dict </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="str">'Alice'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'2341'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Beth'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'9102'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Cecil'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'3258'</span><span class="pun">}</span></pre>
+<p>You can create dictionary in the following way as well:</p>
+<pre style="" class="prettyprint prettyprinted"><span class="pln">dict1 </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="str">'abc'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">456</span><span class="pln"> </span><span class="pun">};</span><span class="pln">
+dict2 </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="str">'abc'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">123</span><span class="pun">,</span><span class="pln"> </span><span class="lit">98.6</span><span class="pun">:</span><span class="pln"> </span><span class="lit">37</span><span class="pln"> </span><span class="pun">};</span></pre>
+<p>Each key is separated from its value by a colon (:), the items are 
+separated by commas, and the whole thing is enclosed in curly braces. An
+ empty dictionary without any items is written with just two curly 
+braces, like this: {}.</p>
+<p>Keys are unique within a dictionary while values may not be. The 
+values of a dictionary can be of any type, but the keys must be of an 
+immutable data type such as strings, numbers, or tuples.</p>
+<h2>Accessing Values in Dictionary:</h2>
+<p>To access dictionary elements, you can use the familiar square 
+brackets along with the key to obtain its value. Following is a simple 
+example:</p>
+<pre style="" class="prettyprint tryit prettyprinted"><span class="com">#!/usr/bin/python</span><span class="pln">
+
+dict </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="str">'Name'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Zara'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Age'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Class'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'First'</span><span class="pun">};</span><span class="pln">
+
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"dict['Name']: "</span><span class="pun">,</span><span class="pln"> dict</span><span class="pun">[</span><span class="str">'Name'</span><span class="pun">];</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"dict['Age']: "</span><span class="pun">,</span><span class="pln"> dict</span><span class="pun">[</span><span class="str">'Age'</span><span class="pun">];</span></pre>
+<p>When the above code is  executed, it produces the following result:</p>
+<pre class="result">dict['Name']:  Zara
+dict['Age']:  7
+</pre>
+<p>If we attempt to access a data item with a key, which is not part of the dictionary, we get an error as follows:</p>
+<pre style="cursor: default;" class="prettyprint tryit prettyprinted"><span class="com">#!/usr/bin/python</span><span class="pln">
+
+dict </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="str">'Name'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Zara'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Age'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Class'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'First'</span><span class="pun">};</span><span class="pln">
+
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"dict['Alice']: "</span><span class="pun">,</span><span class="pln"> dict</span><span class="pun">[</span><span class="str">'Alice'</span><span class="pun">];</span></pre>
+<p>When the above code is  executed, it produces the following result:</p>
+<pre class="result">dict['Zara']:
+Traceback (most recent call last):
+  File "test.py", line 4, in &lt;module&gt;
+    print "dict['Alice']: ", dict['Alice'];
+KeyError: 'Alice'
+</pre>
+<h2>Updating Dictionary:</h2>
+<p>You can update a dictionary by adding a new entry or item (i.e., a 
+key-value pair), modifying an existing entry, or deleting an existing 
+entry as shown below in the simple example:</p>
+<pre style="" class="prettyprint tryit prettyprinted"><span class="com">#!/usr/bin/python</span><span class="pln">
+
+dict </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="str">'Name'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Zara'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Age'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Class'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'First'</span><span class="pun">};</span><span class="pln">
+
+dict</span><span class="pun">[</span><span class="str">'Age'</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">8</span><span class="pun">;</span><span class="pln"> </span><span class="com"># update existing entry</span><span class="pln">
+dict</span><span class="pun">[</span><span class="str">'School'</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">"DPS School"</span><span class="pun">;</span><span class="pln"> </span><span class="com"># Add new entry</span><span class="pln">
+
+
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"dict['Age']: "</span><span class="pun">,</span><span class="pln"> dict</span><span class="pun">[</span><span class="str">'Age'</span><span class="pun">];</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"dict['School']: "</span><span class="pun">,</span><span class="pln"> dict</span><span class="pun">[</span><span class="str">'School'</span><span class="pun">];</span></pre>
+<p>When the above code is  executed, it produces the following result:</p>
+<pre class="result">dict['Age']:  8
+dict['School']:  DPS School
+</pre>
+<h2>Delete Dictionary Elements:</h2>
+<p>You can either remove individual dictionary elements or clear the 
+entire contents of a dictionary. You can also delete entire dictionary 
+in a single operation.</p>
+<p>To explicitly remove an entire dictionary, just use the <b>del</b> statement. Following is a simple example:</p>
+<pre style="" class="prettyprint tryit prettyprinted"><span class="com">#!/usr/bin/python</span><span class="pln">
+
+dict </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="str">'Name'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Zara'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Age'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Class'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'First'</span><span class="pun">};</span><span class="pln">
+
+</span><span class="kwd">del</span><span class="pln"> dict</span><span class="pun">[</span><span class="str">'Name'</span><span class="pun">];</span><span class="pln"> </span><span class="com"># remove entry with key 'Name'</span><span class="pln">
+dict</span><span class="pun">.</span><span class="pln">clear</span><span class="pun">();</span><span class="pln">     </span><span class="com"># remove all entries in dict</span><span class="pln">
+</span><span class="kwd">del</span><span class="pln"> dict </span><span class="pun">;</span><span class="pln">        </span><span class="com"># delete entire dictionary</span><span class="pln">
+
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"dict['Age']: "</span><span class="pun">,</span><span class="pln"> dict</span><span class="pun">[</span><span class="str">'Age'</span><span class="pun">];</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"dict['School']: "</span><span class="pun">,</span><span class="pln"> dict</span><span class="pun">[</span><span class="str">'School'</span><span class="pun">];</span></pre>
+<p>This will produce the following result. Note an exception raised, this is because after <b>del dict</b> dictionary does not exist any more:</p>
+<pre class="result">dict['Age']:
+Traceback (most recent call last):
+  File "test.py", line 8, in &lt;module&gt;
+    print "dict['Age']: ", dict['Age'];
+TypeError: 'type' object is unsubscriptable
+</pre>
+<p><b>Note:</b> del() method is discussed in subsequent section.</p>
+<h2>Properties of Dictionary Keys:</h2>
+<p>Dictionary values have no restrictions. They can be any arbitrary 
+Python object, either standard objects or user-defined objects. However,
+ same is not true for the keys.</p>
+<p>There are two important points to remember about dictionary keys:</p>
+<p><b>(a)</b> More than one entry per key not allowed. Which means no 
+duplicate key is allowed. When duplicate keys encountered during 
+assignment, the last assignment wins. Following is a simple example:</p>
+<pre style="" class="prettyprint tryit prettyprinted"><span class="com">#!/usr/bin/python</span><span class="pln">
+
+dict </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="str">'Name'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Zara'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Age'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Name'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Manni'</span><span class="pun">};</span><span class="pln">
+
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"dict['Name']: "</span><span class="pun">,</span><span class="pln"> dict</span><span class="pun">[</span><span class="str">'Name'</span><span class="pun">];</span></pre>
+<p>When the above code is  executed, it produces the following result:</p>
+<pre class="result">dict['Name']:  Manni
+</pre>
+<p><b>(b)</b> Keys must be immutable. Which means you can use strings, 
+numbers or tuples as dictionary keys but something like ['key']  is not 
+allowed. Following is a simple example:</p>
+<pre style="" class="prettyprint tryit prettyprinted"><span class="com">#!/usr/bin/python</span><span class="pln">
+
+dict </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{[</span><span class="str">'Name'</span><span class="pun">]:</span><span class="pln"> </span><span class="str">'Zara'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Age'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">};</span><span class="pln">
+
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">"dict['Name']: "</span><span class="pun">,</span><span class="pln"> dict</span><span class="pun">[</span><span class="str">'Name'</span><span class="pun">];</span></pre>
+<p>When the above code is  executed, it produces the following result:</p>
+<pre class="result">Traceback (most recent call last):
+  File "test.py", line 3, in &lt;module&gt;
+    dict = {['Name']: 'Zara', 'Age': 7};
+TypeError: list objects are unhashable
+</pre>
+<h2>Built-in Dictionary Functions &amp; Methods:</h2>
+<p>Python includes the following dictionary functions:</p>
+<table class="src">
+<tbody><tr>
+<th style="width:5%">SN</th><th style="width:95%">Function with Description</th></tr>
+<tr><td>1</td><td><a href="http://www.tutorialspoint.com/python/dictionary_cmp.htm">cmp(dict1, dict2)</a><br>Compares elements of both dict.</td></tr>
+<tr><td>2</td><td><a href="http://www.tutorialspoint.com/python/dictionary_len.htm">len(dict)</a><br>Gives the total length of the dictionary. This would be equal to the number of items in the dictionary.</td></tr>
+<tr><td>3</td><td><a href="http://www.tutorialspoint.com/python/dictionary_str.htm">str(dict)</a><br>Produces a printable string representation of a dictionary</td></tr>
+<tr><td>4</td><td><a href="http://www.tutorialspoint.com/python/dictionary_type.htm">type(variable)</a><br>Returns the type of the passed variable. If passed variable is dictionary, then it would return a dictionary type.</td></tr>
+</tbody></table>
+<p>Python includes following dictionary methods</p>
+<table class="src">
+<tbody><tr>
+<th style="width:5%">SN</th><th style="width:95%">Methods with Description</th></tr>
+<tr><td>1</td><td><a href="http://www.tutorialspoint.com/python/dictionary_clear.htm">dict.clear()</a><br>Removes all elements of dictionary <i>dict</i></td></tr>
+<tr><td>2</td><td><a href="http://www.tutorialspoint.com/python/dictionary_copy.htm">dict.copy()</a><br>Returns a shallow copy of dictionary <i>dict</i></td></tr>
+<tr><td>3</td><td><a href="http://www.tutorialspoint.com/python/dictionary_fromkeys.htm">dict.fromkeys()</a><br> Create a new dictionary with keys from seq and values <i>set</i> to <i>value</i>.</td></tr>
+<tr><td>4</td><td><a href="http://www.tutorialspoint.com/python/dictionary_get.htm">dict.get(key, default=None)</a><br>For <i>key</i> key, returns value or default if key not in dictionary</td></tr>
+<tr><td>5</td><td><a href="http://www.tutorialspoint.com/python/dictionary_has_key.htm">dict.has_key(key)</a><br>Returns <i>true</i> if key in dictionary <i>dict</i>, <i>false</i> otherwise</td></tr>
+<tr><td>6</td><td><a href="http://www.tutorialspoint.com/python/dictionary_items.htm">dict.items()</a><br>Returns a list of <i>dict</i>'s (key, value) tuple pairs</td></tr>
+<tr><td>7</td><td><a href="http://www.tutorialspoint.com/python/dictionary_keys.htm">dict.keys()</a><br>Returns list of dictionary dict's keys</td></tr>
+<tr><td>8</td><td><a href="http://www.tutorialspoint.com/python/dictionary_setdefault.htm">dict.setdefault(key, default=None)</a><br>Similar to get(), but will set dict[key]=default if <i>key</i> is not already in dict</td></tr>
+<tr><td>9</td><td><a href="http://www.tutorialspoint.com/python/dictionary_update.htm">dict.update(dict2)</a><br>Adds dictionary <i>dict2</i>'s key-values pairs to <i>dict</i></td></tr>
+<tr><td>10</td><td><a href="http://www.tutorialspoint.com/python/dictionary_values.htm">dict.values()</a><br>Returns list of dictionary <i>dict</i>'s values</td></tr>
+</tbody></table>
+<hr>
+<div class="pre-btn">
+<a href="http://www.tutorialspoint.com/python/python_tuples.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="http://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="http://www.tutorialspoint.com/python/pdf/python_dictionary.pdf" alt="Python Dictionary" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="http://www.tutorialspoint.com/python/python_date_time.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr>
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="Python%20Dictionary_files/show_ads.js"></script><ins style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" frameborder="0" height="280" scrolling="no" width="336"></iframe></ins></ins>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a href="#" title="Facebook" class="addthis_button_facebook at300b"><span class="at16nc at300bs at15nc at15t_facebook at16t_facebook"><span class="at_a11y">Share on facebook</span></span></a>
+<a href="#" title="Tweet" class="addthis_button_twitter at300b"><span class="at16nc at300bs at15nc at15t_twitter at16t_twitter"><span class="at_a11y">Share on twitter</span></span></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script><a class="addthis_button_google_plusone at300b" g:plusone:count="false"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 24px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Python%20Dictionary_files/fastbutton.html" name="I0_1399221784876" id="I0_1399221784876" vspace="0" tabindex="0" style="position: static; top: 0px; width: 24px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div></a>
+<a title="LinkedIn" target="_blank" href="http://www.addthis.com/bookmark.php?v=300&amp;winname=addthis&amp;pub=ra-4f661ec623a400f0&amp;source=tbx-300&amp;lng=en-US&amp;s=linkedin&amp;url=http%3A%2F%2Fwww.tutorialspoint.com%2Fpython%2Fpython_dictionary.htm&amp;title=Python%20Dictionary&amp;ate=AT-ra-4f661ec623a400f0/-/-/53666e17fd091b5e/2&amp;frommenu=1&amp;uid=53666e17e5557cde&amp;ct=1&amp;pre=http%3A%2F%2Fwww.google.co.in%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D2%26cad%3Drja%26uact%3D8%26ved%3D0CC4QFjAB%26url%3Dhttp%253A%252F%252Fwww.tutorialspoint.com%252Fpython%252Fpython_dictionary.htm%26ei%3DkW1mU7m8HIijugT2g4KQCA%26usg%3DAFQjCNEDO6nZBCcCkOMd5va78FK1vPivfw%26bvm%3Dbv.65788261%2Cd.c2E&amp;tt=0&amp;captcha_provider=nucaptcha" class="addthis_button_linkedin at300b"><span class="at16nc at300bs at15nc at15t_linkedin at16t_linkedin"><span class="at_a11y">Share on linkedin</span></span></a>
+<a href="#" title="Email" target="_blank" class="addthis_button_email at300b"><span class="at16nc at300bs at15nc at15t_email at16t_email"><span class="at_a11y">Share on email</span></span></a>
+<a href="#" class="addthis_button_compact at300m"><span class="at16nc at300bs at15nc at15t_compact at16t_compact"><span class="at_a11y">More Sharing Services</span></span></a>
+<div class="atclear"></div></div>
+<script type="text/javascript" src="Python%20Dictionary_files/addthis_widget.js"></script><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;"><iframe src="Python%20Dictionary_files/sh157.html" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px none; left: 0px; top: 0px;" title="AddThis utility frame" id="_atssh768"></iframe></div><script src="Python%20Dictionary_files/core130.js" type="text/javascript"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="Python%20Dictionary_files/show_ads.js"> 
+</script><ins style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;" frameborder="0" height="600" scrolling="no" width="160"></iframe></ins></ins>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="http://www.tutorialspoint.com/asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="http://www.tutorialspoint.com/jquery/index.htm" target="_top">jQuery </a> |
+<a href="http://www.tutorialspoint.com/ajax/index.htm" target="_top">AJAX </a> |
+<a href="http://www.tutorialspoint.com/ant/index.htm" target="_top">ANT</a> |
+<a href="http://www.tutorialspoint.com/jsp/index.htm" target="_top">JSP </a> |
+<a href="http://www.tutorialspoint.com/servlets/index.htm" target="_top">Servlets </a> |
+<a href="http://www.tutorialspoint.com/log4j/index.htm" target="_top">log4j </a> |
+<a href="http://www.tutorialspoint.com/ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="http://www.tutorialspoint.com/hibernate/index.htm" target="_top">Hibernate </a> |
+<a href="http://www.tutorialspoint.com/jdbc/index.htm" target="_top">JDBC </a> |
+<a href="http://www.tutorialspoint.com/struts_2/index.htm" target="_top">Struts </a> |
+<a href="http://www.tutorialspoint.com/html5/index.htm" target="_top">HTML5 </a> |
+<a href="http://www.tutorialspoint.com/sql/index.htm" target="_top">SQL </a> |
+<a href="http://www.tutorialspoint.com/mysql/index.htm" target="_top">MySQL </a> |
+<a href="http://www.tutorialspoint.com/cplusplus/index.htm" target="_top">C++ </a> |
+<a href="http://www.tutorialspoint.com/unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright © 2014 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+
+
+<div style="display: none;" id="cboxOverlay"></div><div style="display: none;" tabindex="-1" role="dialog" class="" id="colorbox"><div id="cboxWrapper"><div><div style="float: left;" id="cboxTopLeft"></div><div style="float: left;" id="cboxTopCenter"></div><div style="float: left;" id="cboxTopRight"></div></div><div style="clear: left;"><div style="float: left;" id="cboxMiddleLeft"></div><div style="float: left;" id="cboxContent"><div style="float: left;" id="cboxTitle"></div><div style="float: left;" id="cboxCurrent"></div><button id="cboxPrevious" type="button"></button><button id="cboxNext" type="button"></button><button id="cboxSlideshow"></button><div style="float: left;" id="cboxLoadingOverlay"></div><div style="float: left;" id="cboxLoadingGraphic"></div></div><div style="float: left;" id="cboxMiddleRight"></div></div><div style="clear: left;"><div style="float: left;" id="cboxBottomLeft"></div><div style="float: left;" id="cboxBottomCenter"></div><div style="float: left;" id="cboxBottomRight"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div><div id="source" style="display:none;"></div><div id="supportsource" style="display:none;"></div><div id="utilsource" style="display:none;"></div><div id="extrasource" style="display:none;"></div><div id="inputs" style="display:none;"></div><div id="filename" style="display:none;"></div><iframe tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Python%20Dictionary_files/postmessageRelay.html" id="oauth2relay1763989882" name="oauth2relay1763989882"></iframe></body><iframe src="" style="display: none;"></iframe></html>

@@ -1,0 +1,586 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Interface to extended filesystem attributes — pyxattr 0.5.2 documentation</title>
+    
+    <link rel="stylesheet" href="Interface%20to%20extended%20filesystem%20attributes%20%E2%80%94%20pyxattr%200.5.2%20documentation_files/default.css" type="text/css">
+    <link rel="stylesheet" href="Interface%20to%20extended%20filesystem%20attributes%20%E2%80%94%20pyxattr%200.5.2%20documentation_files/pygments.css" type="text/css">
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.5.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="Interface%20to%20extended%20filesystem%20attributes%20%E2%80%94%20pyxattr%200.5.2%20documentation_files/jquery.js"></script>
+    <script type="text/javascript" src="Interface%20to%20extended%20filesystem%20attributes%20%E2%80%94%20pyxattr%200.5.2%20documentation_files/underscore.js"></script>
+    <script type="text/javascript" src="Interface%20to%20extended%20filesystem%20attributes%20%E2%80%94%20pyxattr%200.5.2%20documentation_files/doctools.js"></script>
+    <link rel="top" title="pyxattr 0.5.2 documentation" href="http://pyxattr.k1024.org/index.html">
+    <link rel="next" title="News" href="http://pyxattr.k1024.org/news.html">
+    <link rel="prev" title="Welcome to pyxattr’s documentation!" href="http://pyxattr.k1024.org/index.html"> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="http://pyxattr.k1024.org/news.html" title="News" accesskey="N">next</a></li>
+        <li class="right">
+          <a href="http://pyxattr.k1024.org/index.html" title="Welcome to pyxattr’s documentation!" accesskey="P">previous</a> |</li>
+        <li><a href="http://pyxattr.k1024.org/index.html">pyxattr 0.5.2 documentation</a> »</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-xattr">
+<span id="interface-to-extended-filesystem-attributes"></span><h1>Interface to extended filesystem attributes<a class="headerlink" href="#module-xattr" title="Permalink to this headline">¶</a></h1>
+<p>This module gives access to the extended attributes present
+in some operating systems/filesystems. You can list attributes,
+get, set and remove them.</p>
+<dl class="docutils">
+<dt>The module exposes two sets of functions:</dt>
+<dd><ul class="first last simple">
+<li>the ‘old’ <a class="reference internal" href="#xattr.listxattr" title="xattr.listxattr"><tt class="xref py py-func docutils literal"><span class="pre">listxattr()</span></tt></a>, <a class="reference internal" href="#xattr.getxattr" title="xattr.getxattr"><tt class="xref py py-func docutils literal"><span class="pre">getxattr()</span></tt></a>, <a class="reference internal" href="#xattr.setxattr" title="xattr.setxattr"><tt class="xref py py-func docutils literal"><span class="pre">setxattr()</span></tt></a>,
+<a class="reference internal" href="#xattr.removexattr" title="xattr.removexattr"><tt class="xref py py-func docutils literal"><span class="pre">removexattr()</span></tt></a>
+functions which are deprecated since version 0.4</li>
+<li>the new <a class="reference internal" href="#xattr.list" title="xattr.list"><tt class="xref py py-func docutils literal"><span class="pre">list()</span></tt></a>, <a class="reference internal" href="#xattr.get" title="xattr.get"><tt class="xref py py-func docutils literal"><span class="pre">get()</span></tt></a>, <a class="reference internal" href="#xattr.get_all" title="xattr.get_all"><tt class="xref py py-func docutils literal"><span class="pre">get_all()</span></tt></a>, <a class="reference internal" href="#xattr.set" title="xattr.set"><tt class="xref py py-func docutils literal"><span class="pre">set()</span></tt></a>,
+<a class="reference internal" href="#xattr.remove" title="xattr.remove"><tt class="xref py py-func docutils literal"><span class="pre">remove()</span></tt></a> functions
+which expose a namespace-aware API and simplify a bit the calling
+model by using keyword arguments</li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">xattr</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">listxattr</span><span class="p">(</span><span class="s">"file.txt"</span><span class="p">)</span>
+<span class="go">['user.mime_type']</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">getxattr</span><span class="p">(</span><span class="s">"file.txt"</span><span class="p">,</span> <span class="s">"user.mime_type"</span><span class="p">)</span>
+<span class="go">'text/plain'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">setxattr</span><span class="p">(</span><span class="s">"file.txt"</span><span class="p">,</span> <span class="s">"user.comment"</span><span class="p">,</span> <span class="s">"Simple text file"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">listxattr</span><span class="p">(</span><span class="s">"file.txt"</span><span class="p">)</span>
+<span class="go">['user.mime_type', 'user.comment']</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">removexattr</span> <span class="p">(</span><span class="s">"file.txt"</span><span class="p">,</span> <span class="s">"user.comment"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Most or all errors reported by the system while using
+the <tt class="docutils literal"><span class="pre">xattr</span></tt> library will be reported by raising
+a <tt class="xref py py-exc docutils literal"><span class="pre">EnvironmentError</span></tt>; under
+Linux, the following <tt class="docutils literal"><span class="pre">errno</span></tt> values are used:</p>
+<ul class="last simple">
+<li><tt class="docutils literal"><span class="pre">ENOATTR</span></tt> and <tt class="docutils literal"><span class="pre">ENODATA</span></tt> mean that the attribute name is
+invalid</li>
+<li><tt class="docutils literal"><span class="pre">ENOTSUP</span></tt> and <tt class="docutils literal"><span class="pre">EOPNOTSUPP</span></tt> mean that the filesystem does not
+support extended attributes, or that the namespace is invalid</li>
+<li><tt class="docutils literal"><span class="pre">E2BIG</span></tt> mean that the attribute value is too big</li>
+<li><tt class="docutils literal"><span class="pre">ERANGE</span></tt> mean that the attribute name is too big (it might also
+mean an error in the xattr module itself)</li>
+<li><tt class="docutils literal"><span class="pre">ENOSPC</span></tt> and <tt class="docutils literal"><span class="pre">EDQUOT</span></tt> are documented as meaning out of disk
+space or out of disk space because of quota limits</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Under Python 3, the namespace argument is a byte string,
+not a unicode string.</p>
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="xattr.XATTR_CREATE">
+<tt class="descclassname">xattr.</tt><tt class="descname">XATTR_CREATE</tt><a class="headerlink" href="#xattr.XATTR_CREATE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used as flags value, the target attribute
+will be created, giving an error if it already exists.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="xattr.XATTR_REPLACE">
+<tt class="descclassname">xattr.</tt><tt class="descname">XATTR_REPLACE</tt><a class="headerlink" href="#xattr.XATTR_REPLACE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used as flags value, the target attribute
+will be replaced, giving an error if it doesn’t exist.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="xattr.NS_SECURITY">
+<tt class="descclassname">xattr.</tt><tt class="descname">NS_SECURITY</tt><a class="headerlink" href="#xattr.NS_SECURITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>The security namespace, used by kernel security modules.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="xattr.NS_SYSTEM">
+<tt class="descclassname">xattr.</tt><tt class="descname">NS_SYSTEM</tt><a class="headerlink" href="#xattr.NS_SYSTEM" title="Permalink to this definition">¶</a></dt>
+<dd><p>The system namespace, used by the kernel to store things such as
+ACLs and capabilities.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="xattr.NS_TRUSTED">
+<tt class="descclassname">xattr.</tt><tt class="descname">NS_TRUSTED</tt><a class="headerlink" href="#xattr.NS_TRUSTED" title="Permalink to this definition">¶</a></dt>
+<dd><p>The trusted namespace, visible and accessibly only to trusted
+processes, used to implement mechanisms in user space.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="xattr.NS_USER">
+<tt class="descclassname">xattr.</tt><tt class="descname">NS_USER</tt><a class="headerlink" href="#xattr.NS_USER" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user namespace; this is the namespace accessible to
+non-privileged processes.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="xattr.list">
+<tt class="descclassname">xattr.</tt><tt class="descname">list</tt><big>(</big><em>item</em><span class="optional">[</span>, <em>nofollow=False</em>, <em>namespace=None</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xattr.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of attribute names for a file.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s">'/path/to/file'</span><span class="p">)</span>
+<span class="go">['user.test', 'user.comment', 'system.posix_acl_access']</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s">'/path/to/file'</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="n">xattr</span><span class="o">.</span><span class="n">NS_USER</span><span class="p">)</span>
+<span class="go">['test', 'comment']</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>item</strong> – a string representing a file-name, or a file-like
+object, or a file descriptor; this represents the file on 
+which to act</li>
+<li><strong>nofollow</strong> (<em>boolean, optional</em>) – if true and if
+the file name given is a symbolic link, the
+function will operate on the symbolic link itself instead
+of its target; defaults to false</li>
+<li><strong>namespace</strong> (<em>bytes</em>) – if given, the attribute must not contain the
+namespace, but instead it will be taken from this parameter</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the list of attributes; note that if a namespace 
+argument was passed, it (and the separator) will be stripped
+from the names
+returned</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises EnvironmentError:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">caused by any system errors</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.4.</span></p>
+<p class="versionchanged">
+<span class="versionmodified">Changed in version 0.5.1: </span>The namespace argument, if passed, cannot be None anymore; to
+explicitly specify an empty namespace, pass an empty
+string (byte string under Python 3).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xattr.get">
+<tt class="descclassname">xattr.</tt><tt class="descname">get</tt><big>(</big><em>item</em>, <em>name</em><span class="optional">[</span>, <em>nofollow=False</em>, <em>namespace=None</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xattr.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value of a given extended attribute.</p>
+<dl class="docutils">
+<dt>Example:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/path/to/file'</span><span class="p">,</span> <span class="s">'user.comment'</span><span class="p">)</span>
+<span class="go">'test'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/path/to/file'</span><span class="p">,</span> <span class="s">'comment'</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="n">xattr</span><span class="o">.</span><span class="n">NS_USER</span><span class="p">)</span>
+<span class="go">'test'</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>item</strong> – a string representing a file-name, or a file-like
+object, or a file descriptor; this represents the file on 
+which to act</li>
+<li><strong>name</strong> (<em>string</em>) – the attribute whose value to retrieve;
+usually in the form of <tt class="docutils literal"><span class="pre">system.posix_acl</span></tt> or <tt class="docutils literal"><span class="pre">user.mime_type</span></tt></li>
+<li><strong>nofollow</strong> (<em>boolean, optional</em>) – if true and if
+the file name given is a symbolic link, the
+function will operate on the symbolic link itself instead
+of its target; defaults to false</li>
+<li><strong>namespace</strong> (<em>bytes</em>) – if given, the attribute must not contain the
+namespace, but instead it will be taken from this parameter</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the value of the extended attribute (can contain NULLs)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises EnvironmentError:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">caused by any system errors</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.4.</span></p>
+<p class="versionchanged">
+<span class="versionmodified">Changed in version 0.5.1: </span>The namespace argument, if passed, cannot be None anymore; to
+explicitly specify an empty namespace, pass an empty
+string (byte string under Python 3).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xattr.get_all">
+<tt class="descclassname">xattr.</tt><tt class="descname">get_all</tt><big>(</big><em>item</em><span class="optional">[</span>, <em>nofollow=False</em>, <em>namespace=None</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xattr.get_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all the extended attributes of an item.</p>
+<p>This function performs a bulk-get of all extended attribute names
+and the corresponding value.
+Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="s">'/path/to/file'</span><span class="p">)</span>
+<span class="go">[('user.mime-type', 'plain/text'), ('user.comment', 'test'),</span>
+<span class="go"> ('system.posix_acl_access', '\x02\x00...')]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="s">'/path/to/file'</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="n">xattr</span><span class="o">.</span><span class="n">NS_USER</span><span class="p">)</span>
+<span class="go">[('mime-type', 'plain/text'), ('comment', 'test')]</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>item</strong> – a string representing a file-name, or a file-like
+object, or a file descriptor; this represents the file on 
+which to act</li>
+<li><strong>namespace</strong> (<em>string</em>) – an optional namespace for filtering the
+attributes; for example, querying all user attributes can be
+accomplished by passing namespace=:const:<cite>NS_USER</cite></li>
+<li><strong>nofollow</strong> (<em>boolean, optional</em>) – if true and if
+the file name given is a symbolic link, the
+function will operate on the symbolic link itself instead
+of its target; defaults to false</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of tuples (name, value); note that if a namespace
+argument was passed, it (and the separator) will be stripped from
+the names returned</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises EnvironmentError:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">caused by any system errors</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since reading the whole attribute list is not an atomic
+operation, it might be possible that attributes are added
+or removed between the initial query and the actual reading
+of the attributes; the returned list will contain only the
+attributes that were present at the initial listing of the
+attribute names and that were still present when the read
+attempt for the value is made.</p>
+</div>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.4.</span></p>
+<p class="versionchanged">
+<span class="versionmodified">Changed in version 0.5.1: </span>The namespace argument, if passed, cannot be None anymore; to
+explicitly specify an empty namespace, pass an empty
+string (byte string under Python 3).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xattr.set">
+<tt class="descclassname">xattr.</tt><tt class="descname">set</tt><big>(</big><em>item</em>, <em>name</em>, <em>value</em><span class="optional">[</span>, <em>flags=0</em>, <em>namespace=None</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xattr.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of a given extended attribute.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">'/path/to/file'</span><span class="p">,</span> <span class="s">'user.comment'</span><span class="p">,</span> <span class="s">'test'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">'/path/to/file'</span><span class="p">,</span> <span class="s">'comment'</span><span class="p">,</span> <span class="s">'test'</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="n">xattr</span><span class="o">.</span><span class="n">NS_USER</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>item</strong> – a string representing a file-name, or a file-like
+object, or a file descriptor; this represents the file on 
+which to act</li>
+<li><strong>name</strong> (<em>string</em>) – the attribute whose value to set;
+usually in the form of <tt class="docutils literal"><span class="pre">system.posix_acl</span></tt> or <tt class="docutils literal"><span class="pre">user.mime_type</span></tt></li>
+<li><strong>value</strong> (<em>string</em>) – possibly with embedded NULLs; note that there
+are restrictions regarding the size of the value, for
+example, for ext2/ext3, maximum size is the block size</li>
+<li><strong>flags</strong> (<em>integer</em>) – if 0 or omitted the attribute will be
+created or replaced; if <a class="reference internal" href="#xattr.XATTR_CREATE" title="xattr.XATTR_CREATE"><tt class="xref py py-const docutils literal"><span class="pre">XATTR_CREATE</span></tt></a>, the attribute
+will be created, giving an error if it already exists;
+if <a class="reference internal" href="#xattr.XATTR_REPLACE" title="xattr.XATTR_REPLACE"><tt class="xref py py-const docutils literal"><span class="pre">XATTR_REPLACE</span></tt></a>, the attribute will be replaced,
+giving an error if it doesn’t exist;</li>
+<li><strong>nofollow</strong> (<em>boolean, optional</em>) – if true and if
+the file name given is a symbolic link, the
+function will operate on the symbolic link itself instead
+of its target; defaults to false</li>
+<li><strong>namespace</strong> (<em>bytes</em>) – if given, the attribute must not contain the
+namespace, but instead it will be taken from this parameter</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Raises EnvironmentError:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first last">caused by any system errors</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.4.</span></p>
+<p class="versionchanged">
+<span class="versionmodified">Changed in version 0.5.1: </span>The namespace argument, if passed, cannot be None anymore; to
+explicitly specify an empty namespace, pass an empty
+string (byte string under Python 3).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xattr.remove">
+<tt class="descclassname">xattr.</tt><tt class="descname">remove</tt><big>(</big><em>item</em>, <em>name</em><span class="optional">[</span>, <em>nofollow=False</em>, <em>namespace=None</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xattr.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove an attribute from a file.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">xattr</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s">'/path/to/file'</span><span class="p">,</span> <span class="s">'user.comment'</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>item</strong> – a string representing a file-name, or a file-like
+object, or a file descriptor; this represents the file on 
+which to act</li>
+<li><strong>name</strong> (<em>string</em>) – the attribute to remove;
+usually in the form of <tt class="docutils literal"><span class="pre">system.posix_acl</span></tt> or 
+<tt class="docutils literal"><span class="pre">user.mime_type</span></tt></li>
+<li><strong>nofollow</strong> (<em>boolean, optional</em>) – if true and if
+the file name given is a symbolic link, the
+function will operate on the symbolic link itself instead
+of its target; defaults to false</li>
+<li><strong>namespace</strong> (<em>bytes</em>) – if given, the attribute must not contain the
+namespace, but instead it will be taken from this parameter</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Raises EnvironmentError:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first last">caused by any system errors</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.4.</span></p>
+<p class="versionchanged">
+<span class="versionmodified">Changed in version 0.5.1: </span>The namespace argument, if passed, cannot be None anymore; to
+explicitly specify an empty namespace, pass an empty
+string (byte string under Python 3).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="deprecated-functions">
+<h2>Deprecated functions<a class="headerlink" href="#deprecated-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="xattr.getxattr">
+<tt class="descclassname">xattr.</tt><tt class="descname">getxattr</tt><big>(</big><em>item</em>, <em>attribute</em><span class="optional">[</span>, <em>nofollow=False</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xattr.getxattr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value of a given extended attribute (deprecated).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>item</strong> – a string representing a file-name, or a file-like
+object, or a file descriptor; this represents the file on 
+which to act</li>
+<li><strong>name</strong> (<em>string</em>) – the attribute whose value to retrieve;
+usually in the form of <tt class="docutils literal"><span class="pre">system.posix_acl</span></tt> or <tt class="docutils literal"><span class="pre">user.mime_type</span></tt></li>
+<li><strong>nofollow</strong> (<em>boolean, optional</em>) – if true and if
+the file name given is a symbolic link, the
+function will operate on the symbolic link itself instead
+of its target; defaults to false</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="deprecated">
+<span class="versionmodified">Deprecated since version 0.4: </span>this function has been deprecated
+by the <a class="reference internal" href="#xattr.get" title="xattr.get"><tt class="xref py py-func docutils literal"><span class="pre">get()</span></tt></a> function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xattr.setxattr">
+<tt class="descclassname">xattr.</tt><tt class="descname">setxattr</tt><big>(</big><em>item</em>, <em>name</em>, <em>value</em><span class="optional">[</span>, <em>flags=0</em>, <em>nofollow=False</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xattr.setxattr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of a given extended attribute (deprecated).</p>
+<p>Be careful in case you want to set attributes on symbolic
+links, you have to use all the 5 parameters; use 0 for the 
+flags value if you want the default behaviour (create or replace)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>item</strong> – a string representing a file-name, or a file-like
+object, or a file descriptor; this represents the file on 
+which to act</li>
+<li><strong>name</strong> (<em>string</em>) – the attribute whose value to set;
+usually in the form of <tt class="docutils literal"><span class="pre">system.posix_acl</span></tt> or <tt class="docutils literal"><span class="pre">user.mime_type</span></tt></li>
+<li><strong>value</strong> (<em>string</em>) – possibly with embedded NULLs; note that there
+are restrictions regarding the size of the value, for
+example, for ext2/ext3, maximum size is the block size</li>
+<li><strong>flags</strong> (<em>integer</em>) – if 0 or omitted the attribute will be
+created or replaced; if <a class="reference internal" href="#xattr.XATTR_CREATE" title="xattr.XATTR_CREATE"><tt class="xref py py-const docutils literal"><span class="pre">XATTR_CREATE</span></tt></a>, the attribute
+will be created, giving an error if it already exists;
+if <a class="reference internal" href="#xattr.XATTR_REPLACE" title="xattr.XATTR_REPLACE"><tt class="xref py py-const docutils literal"><span class="pre">XATTR_REPLACE</span></tt></a>, the attribute will be replaced,
+giving an error if it doesn’t exist;</li>
+<li><strong>nofollow</strong> (<em>boolean, optional</em>) – if true and if
+the file name given is a symbolic link, the
+function will operate on the symbolic link itself instead
+of its target; defaults to false</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="deprecated">
+<span class="versionmodified">Deprecated since version 0.4: </span>this function has been deprecated
+by the <a class="reference internal" href="#xattr.set" title="xattr.set"><tt class="xref py py-func docutils literal"><span class="pre">set()</span></tt></a> function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xattr.listxattr">
+<tt class="descclassname">xattr.</tt><tt class="descname">listxattr</tt><big>(</big><em>item</em><span class="optional">[</span>, <em>nofollow=False</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xattr.listxattr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of attribute names for a file (deprecated).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>item</strong> – a string representing a file-name, or a file-like
+object, or a file descriptor; this represents the file on 
+which to act</li>
+<li><strong>nofollow</strong> (<em>boolean, optional</em>) – if true and if
+the file name given is a symbolic link, the
+function will operate on the symbolic link itself instead
+of its target; defaults to false</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="deprecated">
+<span class="versionmodified">Deprecated since version 0.4: </span>this function has been deprecated by the <a class="reference internal" href="#xattr.list" title="xattr.list"><tt class="xref py py-func docutils literal"><span class="pre">list()</span></tt></a> function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xattr.removexattr">
+<tt class="descclassname">xattr.</tt><tt class="descname">removexattr</tt><big>(</big><em>item</em>, <em>name</em><span class="optional">[</span>, <em>nofollow</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xattr.removexattr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove an attribute from a file (deprecated).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>item</strong> – a string representing a file-name, or a file-like
+object, or a file descriptor; this represents the file on 
+which to act</li>
+<li><strong>name</strong> (<em>string</em>) – the attribute to remove;
+usually in the form of <tt class="docutils literal"><span class="pre">system.posix_acl</span></tt> or 
+<tt class="docutils literal"><span class="pre">user.mime_type</span></tt></li>
+<li><strong>nofollow</strong> (<em>boolean, optional</em>) – if true and if
+the file name given is a symbolic link, the
+function will operate on the symbolic link itself instead
+of its target; defaults to false</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="deprecated">
+<span class="versionmodified">Deprecated since version 0.4: </span>this function has been deprecated by the <a class="reference internal" href="#xattr.remove" title="xattr.remove"><tt class="xref py py-func docutils literal"><span class="pre">remove()</span></tt></a> function.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="http://pyxattr.k1024.org/index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Interface to extended filesystem attributes</a><ul>
+<li><a class="reference internal" href="#constants">Constants</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#deprecated-functions">Deprecated functions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="http://pyxattr.k1024.org/index.html" title="previous chapter">Welcome to pyxattr’s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="http://pyxattr.k1024.org/news.html" title="next chapter">News</a></p>
+<div id="searchbox" style="display: block;">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input name="q" type="text">
+      <input value="Go" type="submit">
+      <input name="check_keywords" value="yes" type="hidden">
+      <input name="area" value="default" type="hidden">
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="http://pyxattr.k1024.org/news.html" title="News">next</a></li>
+        <li class="right">
+          <a href="http://pyxattr.k1024.org/index.html" title="Welcome to pyxattr’s documentation!">previous</a> |</li>
+        <li><a href="http://pyxattr.k1024.org/index.html">pyxattr 0.5.2 documentation</a> »</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        © Copyright 2002, 2003, 2006, 2008, 2012, 2013, Iustin Pop.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  
+</body></html>

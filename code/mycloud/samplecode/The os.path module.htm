@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"><link rel="shortcut icon" href="http://effbot.org/media/img/effbot.ico"><link rel="stylesheet" href="The%20os.path%C2%A0module_files/effbot-min.css" type="text/css" media="screen"><link rel="stylesheet" href="The%20os.path%C2%A0module_files/effbotprint-min.css" type="text/css" media="print"><title>The os.path&nbsp;module</title><script type="text/javascript">effbot_page_id=603;</script></head><body><div id="doc2" class="yui-t2"><div id="hd"><!-- header --></div><!-- hd --><div id="bd"><!-- body --><p class="note" style="text-align: center"><strong>
+
+We're back after a server migration that caused effbot.org to fall
+over a bit harder than expected.  Expect some glitches.
+
+</strong></p><div id="yui-main"><div class="yui-b"><div class="content"><div class="yui-g"><h1 class="maintitle">The os.path&nbsp;module</h1></div><!-- yui-g -->
+
+<p>This module contains functions that deal with long filenames
+(path names) in various ways. To use this module, import the
+<b><a href="http://effbot.org/librarybook/os.htm">os</a></b> module, and access this module
+as <b>os.path</b>.</p>
+<h3 style="sect2">Working with file names</h3>
+<p>This module contains a number of functions that deal with long
+filenames in a platform independent way. In other words, without
+having to deal with forward and backward slashes, colons, and
+whatnot.</p>
+<div class="example">
+<b style="example">Example: Using the os.path
+module to handle filename</b>
+<pre># File: <a href="http://effbot.org/librarybook/os-path-example-1.py">os-path-example-1.py</a>
+
+import os
+
+filename = "my/little/pony"
+
+print "using", os.name, "..."
+print "split", "=&gt;", os.path.split(filename)
+print "splitext", "=&gt;", os.path.splitext(filename)
+print "dirname", "=&gt;", os.path.dirname(filename)
+print "basename", "=&gt;", os.path.basename(filename)
+print "join", "=&gt;", os.path.join(os.path.dirname(filename),
+                                 os.path.basename(filename))
+
+</pre>
+<pre class="computeroutput" moreinfo="NONE">using nt ...
+split =&gt; ('my/little', 'pony')
+splitext =&gt; ('my/little/pony', '')
+dirname =&gt; my/little
+basename =&gt; pony
+join =&gt; my/little\pony
+</pre>
+</div>
+<p>Note that <b>split</b> only splits off a single item.</p>
+<p>This module also contains a number of functions that allow you
+to quickly figure out what a filename represents:</p>
+<div class="example">
+<b style="example">Example: Using the os.path
+module to check what a filename represents</b>
+<pre># File: <a href="http://effbot.org/librarybook/os-path-example-2.py">os-path-example-2.py</a>
+
+import os
+
+FILES = (
+    os.curdir,
+    "/",
+    "file",
+    "/file",
+    "samples",
+    "samples/sample.jpg",
+    "directory/file",
+    "../directory/file",
+    "/directory/file"
+    )
+
+for file in FILES:
+    print file, "=&gt;",
+    if os.path.exists(file):
+        print "EXISTS",
+    if os.path.isabs(file):
+        print "ISABS",
+    if os.path.isdir(file):
+        print "ISDIR",
+    if os.path.isfile(file):
+        print "ISFILE",
+    if os.path.islink(file):
+        print "ISLINK",
+    if os.path.ismount(file):
+        print "ISMOUNT",
+    print
+
+</pre>
+<pre class="computeroutput" moreinfo="NONE">. =&gt; EXISTS ISDIR
+/ =&gt; EXISTS ISABS ISDIR ISMOUNT
+file =&gt;
+/file =&gt; ISABS
+samples =&gt; EXISTS ISDIR
+samples/sample.jpg =&gt; EXISTS ISFILE
+directory/file =&gt;
+../directory/file =&gt;
+/directory/file =&gt; ISABS
+</pre>
+</div>
+<p>The <b>expanduser</b> function treats a user name shortcut in
+the same way as most modern Unix shells (it doesn’t work well on
+Windows).</p>
+<div class="example">
+<b style="example">Example: Using the os.path
+module to insert the user name into a filename</b>
+<pre># File: <a href="http://effbot.org/librarybook/os-path-expanduser-example-1.py">os-path-expanduser-example-1.py</a>
+
+import os
+
+print os.path.expanduser("~/.pythonrc")
+
+</pre>
+<pre class="computeroutput" moreinfo="NONE">/home/effbot/.pythonrc
+</pre>
+</div>
+<p>The <b>expandvars</b> function inserts environment variables
+into a filename:</p>
+<div class="example">
+<b style="example">Example: Using the os.path
+module to insert variables into a filename</b>
+<pre># File: <a href="http://effbot.org/librarybook/os-path-expandvars-example-1.py">os-path-expandvars-example-1.py</a>
+
+import os
+
+os.environ["USER"] = "user"
+
+print os.path.expandvars("/home/$USER/config")
+print os.path.expandvars("$USER/folders")
+
+</pre>
+<pre class="computeroutput" moreinfo="NONE">/home/user/config
+user/folders
+</pre>
+</div>
+<h3 style="sect2">Traversing a file system</h3>
+<p>The <b>walk</b> function helps you find all files in a
+directory tree. It takes a directory name, a callback function, and
+a data object that is passed on to the callback.</p>
+<div class="example">
+<b style="example">Example: Using the os.path
+module to traverse a file system</b>
+<pre># File: <a href="http://effbot.org/librarybook/os-path-walk-example-1.py">os-path-walk-example-1.py</a>
+
+import os
+
+def callback(arg, directory, files):
+    for file in files:
+        print os.path.join(directory, file), repr(arg)
+
+os.path.walk(".", callback, "secret message")
+
+</pre>
+<pre class="computeroutput" moreinfo="NONE">./aifc-example-1.py 'secret message'
+./anydbm-example-1.py 'secret message'
+./array-example-1.py 'secret message'
+...
+./samples 'secret message'
+./samples/sample.jpg 'secret message'
+./samples/sample.txt 'secret message'
+./samples/sample.zip 'secret message'
+./samples/articles 'secret message'
+./samples/articles/article-1.txt 'secret message'
+./samples/articles/article-2.txt 'secret message'
+...
+</pre>
+</div>
+<p>The <b>walk</b> function has a somewhat obscure user interface
+(maybe it’s just me, but I can never remember the order of the
+arguments). The <b>index</b> function in the next example returns
+a list of filenames instead, which lets you use a straightforward
+<b>for-in</b> loop to process the files:</p>
+<div class="example">
+<b style="example">Example: Using os.listdir
+to traverse a file system</b>
+<pre># File: <a href="http://effbot.org/librarybook/os-path-walk-example-2.py">os-path-walk-example-2.py</a>
+
+import os
+
+def index(directory):
+    # like os.listdir, but traverses directory trees
+    stack = [directory]
+    files = []
+    while stack:
+        directory = stack.pop()
+        for file in os.listdir(directory):
+            fullname = os.path.join(directory, file)
+            files.append(fullname)
+            if os.path.isdir(fullname) and not os.path.islink(fullname):
+                stack.append(fullname)
+    return files
+
+for file in index("."):
+    print file
+
+</pre>
+<pre class="computeroutput" moreinfo="NONE">.\aifc-example-1.py
+.\anydbm-example-1.py
+.\array-example-1.py
+...
+</pre>
+</div>
+<p>If you don’t want to list all files (for performance or memory
+reasons), the following example uses a different approach. Here,
+the <b>DirectoryWalker</b> class behaves like a sequence object,
+returning one file at a time:</p>
+<div class="example">
+<b style="example">Example: Using a directory
+walker to traverse a file system</b>
+<pre># File: <a href="http://effbot.org/librarybook/os-path-walk-example-3.py">os-path-walk-example-3.py</a>
+
+import os
+
+class DirectoryWalker:
+    # a forward iterator that traverses a directory tree
+
+    def __init__(self, directory):
+        self.stack = [directory]
+        self.files = []
+        self.index = 0
+
+    def __getitem__(self, index):
+        while 1:
+            try:
+                file = self.files[self.index]
+                self.index = self.index + 1
+            except IndexError:
+                # pop next directory from stack
+                self.directory = self.stack.pop()
+                self.files = os.listdir(self.directory)
+                self.index = 0
+            else:
+                # got a filename
+                fullname = os.path.join(self.directory, file)
+                if os.path.isdir(fullname) and not os.path.islink(fullname):
+                    self.stack.append(fullname)
+                return fullname
+
+for file in DirectoryWalker("."):
+    print file
+
+</pre>
+<pre class="computeroutput" moreinfo="NONE">.\aifc-example-1.py
+.\anydbm-example-1.py
+.\array-example-1.py
+...
+</pre>
+</div>
+<p>Note that this class doesn’t check the index passed to the
+<b>__getitem__</b> method. This means that it won’t do the right
+thing if you access the sequence members out of order.</p>
+<p>Finally, if you’re interested in the file sizes or timestamps,
+here’s a version of the class that returns both the filename and
+the tuple returned from <b>os.stat</b>. This version saves one or
+two <b>stat</b> calls for each file (both <b>os.path.isdir</b>
+and <b>os.path.islink</b> uses <b>stat</b>), and runs quite a
+bit faster on some platforms.</p>
+<div class="example">
+<b style="example">Example: Using a directory
+walker to traverse a file system, returning both the filename and
+additional file information</b>
+<pre># File: <a href="http://effbot.org/librarybook/os-path-walk-example-4.py">os-path-walk-example-4.py</a>
+
+import os, stat
+
+class DirectoryStatWalker:
+    # a forward iterator that traverses a directory tree, and
+    # returns the filename and additional file information
+
+    def __init__(self, directory):
+        self.stack = [directory]
+        self.files = []
+        self.index = 0
+
+    def __getitem__(self, index):
+        while 1:
+            try:
+                file = self.files[self.index]
+                self.index = self.index + 1
+            except IndexError:
+                # pop next directory from stack
+                self.directory = self.stack.pop()
+                self.files = os.listdir(self.directory)
+                self.index = 0
+            else:
+                # got a filename
+                fullname = os.path.join(self.directory, file)
+                st = os.stat(fullname)
+                mode = st[stat.ST_MODE]
+                if stat.S_ISDIR(mode) and not stat.S_ISLNK(mode):
+                    self.stack.append(fullname)
+                return fullname, st
+
+for file, st in DirectoryStatWalker("."):
+    print file, st[stat.ST_SIZE]
+
+</pre>
+<pre class="computeroutput" moreinfo="NONE">.\aifc-example-1.py 336
+.\anydbm-example-1.py 244
+.\array-example-1.py 526
+</pre>
+</div><div class="yui-g"></div><!-- yui-g --></div><!-- content --></div><!-- yui-b --></div><!-- yui-main --><div class="yui-b"><div id="menu"></div><!-- menu --></div><!-- yui-b --></div><!-- bd --><div id="ft"><!-- footer --></div><!-- ft --></div><!-- doc --><script src="The%20os.path%C2%A0module_files/effbot-min.js" type="text/javascript"></script>
+</body></html>

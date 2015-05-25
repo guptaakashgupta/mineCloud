@@ -1,0 +1,12 @@
+.features { background: #f5f5f5; overflow: auto; padding: 16px; }
+.features section { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; background: #fff; border: 1px solid #acacac; margin-bottom: 0; padding: 1em; height: 115px; width: 49%; }
+.features section.quickstart { float: left;}
+.features section.quickstart img { float: right; margin-left: 1em; }
+.features section.reference { float: right; }
+.features section h3 { font-weight: bold; margin-bottom: 0; }
+.features section p { margin-bottom: 0; }
+.features section.quickstart p { margin-bottom: 6px; }
+.features section.reference img { float: right; margin-left: 1em; }
+.inline-toc { overflow: auto; }
+.inline-toc > ul, .inline-toc > ol { float: left; }
+.inline-toc ul, .inline-toc ol { list-style-type: none; }
